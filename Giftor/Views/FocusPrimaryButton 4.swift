@@ -25,21 +25,14 @@ struct FocusPrimaryButtonStyle<Content: View>: View {
     
     var body: some View {
         content
-              .frame(width: width, height: height)
-              .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
-              // Material Design 3 Style: Flat Surface Shape (Rounded Rectangle)
-              .background(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                      .fill(Color(UIColor.systemBackground)) 
-              )
-              // Pink Border Addition
-              .overlay(
-                RoundedRectangle(cornerRadius: 20, style: .continuous)
-                      .stroke(Color.pink, lineWidth: 3.5)
-              )
-              // M3 Elevation Shadow: Smooth drop shadow simulating physical elevation
-              .shadow(color: .black.opacity(0.1), radius: 6, x: 0, y: 2)
-      }
+                .frame(width: width, height: height)
+                .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+                .background(
+                 RoundedRectangle(cornerRadius: 20, style: .continuous)
+                        .fill(LinearGradient(colors: [Color(hex: "#6C5CE7"), Color(hex: "#E84393")], startPoint: .leading, endPoint: .trailing)))
+                // Smooth drop shadow simulating physical elevation
+                .shadow(color: .purple.opacity(0.35), radius: 10, x: 0, y: 4)
+        }
 }
 
 struct FocusScaleButtonStyle: ButtonStyle {
@@ -66,9 +59,9 @@ struct FocusPrimaryLabel: View {
             
             Text(title)
                   .font(.system(size: 16, weight: .medium)) // M3 prefers Medium/System over heavy tracking bumps
-                  .tracking(0.5)                           // Updated to match M3 tighter typography
-          }
-          .foregroundStyle(.primary)
+               .tracking(0.5)                            // Updated to match M3 tighter typography
+              }
+              .foregroundStyle(.white)
+         }
       }
-}
 

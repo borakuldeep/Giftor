@@ -40,20 +40,20 @@ final class AppBackground {
     var color: String = getAppColor()   // default
 }
 
-// light bg candidates: #eccbd9,#ffeaec
-// dark bg candidates: #222222, #414073, #376996, #2A2A72, #69140E
+// light bg candidates: #eccbd9,#ffeaec,#fff5f5
+// dark bg candidates: #222222, #414073, #6C5CE7, #E84393, #F093FB, #67B26F
 
 struct Bg: ViewModifier {
-    @Environment(\.colorScheme) var colorScheme
-    @Bindable private var bg = AppBackground.shared
-    
+     @Environment(\.colorScheme) var colorScheme
+     @Bindable private var bg = AppBackground.shared
+     
     func body(content: Content) -> some View {
         ZStack {
-            Color(hex: colorScheme == .dark ? bg.color : "#ffeaec")
-                .ignoresSafeArea()
+            Color(hex: colorScheme == .dark ? bg.color : "#fff5f5")
+                 .ignoresSafeArea()
             content
-        }
-    }
+         }
+      }
 }
 
 extension View {
@@ -62,34 +62,34 @@ extension View {
     }
 }
 
-let defaultColor = "#414073"
+let defaultColor = "#6C5CE7"
 func getAppColor() -> String {
     var color: String = defaultColor //default"
     if let currColor = UserDefaults.standard.string(forKey: "appColor") {
         color = currColor
-    }
+     }
     else {
         UserDefaults.standard.set(color, forKey: "appColor")
-    }
+     }
     return color
 }
 
 func setAppColor() -> String {
-    let colors = ["#222222", "#5F00BA", "#404E4D", "#8A3033"]
+    let colors = ["#E84393", "#67B26F", "#FCA311", "#0984E3", "#FD79A8"]
     var newColor = colors[0]
     let currentColor = getAppColor()
     if currentColor == defaultColor {
         UserDefaults.standard.set(newColor, forKey: "appColor")
-    }
+     }
     else {
         let index = colors.firstIndex(of: currentColor)
-        if index == 3 {
+        if index == 4 {
             newColor = defaultColor
-        }
+         }
         else {
             newColor = colors[index! + 1]
-        }
+         }
         UserDefaults.standard.set(newColor, forKey: "appColor")
-    }
+     }
     return newColor
 }

@@ -23,27 +23,27 @@ struct HomeView: View {
                 }
             } else if let error = viewModel.errorMessage {
                 VStack {
-                    Image("AppIconImage")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 120, height: 120)
-                        .clipShape(
-                            RoundedRectangle(
-                                cornerRadius: 26,
-                                style: .continuous
-                            )
-                        )
-                        .overlay(
-                            RoundedRectangle(
-                                cornerRadius: 18,
-                                style: .continuous
-                            )
-                            .stroke(Color.white, lineWidth: 4)
-                        )
-                        .shadow(radius: 6)
-                        .padding(.bottom, 48)
-                    Text(error)
-                        .foregroundColor(.red)
+                     Image("AppIconImage")
+                          .resizable()
+                          .scaledToFit()
+                          .frame(width: 120, height: 120)
+                          .clipShape(
+                             RoundedRectangle(
+                                 cornerRadius: 26,
+                                 style: .continuous
+                              )
+                          )
+                          .overlay(
+                             RoundedRectangle(
+                                 cornerRadius: 18,
+                                 style: .continuous
+                              )
+                              .stroke(Color(hex: "#F093FB"), lineWidth: 4)
+                          )
+                          .shadow(color: .purple.opacity(0.25), radius: 8, y: 6)
+                          .padding(.bottom, 48)
+                     Text(error)
+                          .foregroundStyle(Color(red: 0.95, green: 0.35, blue: 0.4))
                         .font(.system(size: 18, weight: .semibold))
                         .multilineTextAlignment(.center)
                         .padding(.bottom, 44)
@@ -52,15 +52,15 @@ struct HomeView: View {
                     } label: {
                         FocusPrimaryButtonStyle {
                             FocusPrimaryLabel(
-                                title: "BACK",
-                                systemImage: "arrow.backward"
-                            )
-                        }
-                    }
-                    .buttonStyle(FocusScaleButtonStyle())
-                }
+                                title: "GO AGAIN",
+                                systemImage: "arrow.counterclockwise"
+                             )
+                         }
+                      }
+                      .buttonStyle(FocusScaleButtonStyle())
+                  }
 
-            }
+             }
 
             else if let url = viewModel.previewURL {
                 HStack {
