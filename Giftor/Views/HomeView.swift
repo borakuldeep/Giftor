@@ -371,14 +371,14 @@ struct HomeView: View {
             }
 
             Spacer()
-            Button(action: {
-                AppBackground.shared.color = setAppColor()
-            }) {
-                Image(systemName: "pencil.tip.crop.circle.fill")
-                    .resizable()
-                    .frame(width: 60, height: 60)
-            }
-            Spacer()
+//            Button(action: {
+//                AppBackground.shared.color = setAppColor()
+//            }) {
+//                Image(systemName: "pencil.tip.crop.circle.fill")
+//                    .resizable()
+//                    .frame(width: 60, height: 60)
+//            }
+//            Spacer()
         }
     }
 }
