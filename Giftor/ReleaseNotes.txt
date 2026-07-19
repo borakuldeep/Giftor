@@ -1,0 +1,6 @@
+Release 1.1 features to add
+- change background (for photo)
+- add 2 text lines (top and bottom for ex)
+- add video in app review
+
+

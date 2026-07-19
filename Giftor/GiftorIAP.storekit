@@ -1,0 +1,72 @@
+{
+  "appPolicies" : {
+    "eula" : "",
+    "policies" : [
+      {
+        "locale" : "en_US",
+        "policyText" : "",
+        "policyURL" : ""
+      }
+    ]
+  },
+  "identifier" : "509CEC1A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "1.99",
+      "familyShareable" : false,
+      "internalID" : "6761158109",
+      "localizations" : [
+        {
+          "description" : "Buy me a coffee",
+          "displayName" : "Buy me a coffee",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.xb.giftor.coffee",
+      "referenceName" : "Buy me a Coffee",
+      "type" : "Consumable"
+    },
+    {
+      "displayPrice" : "9.99",
+      "familyShareable" : false,
+      "internalID" : "6759521003",
+      "localizations" : [
+        {
+          "description" : "Everything in Plus, remove and replace watermark text",
+          "displayName" : "Giftor Pro",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.xb.giftor.user.pro",
+      "referenceName" : "Giftor Pro users",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_applicationInternalID" : "6759494010",
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_developerTeamID" : "3NJQUKZHUQ",
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_lastSynchronizedDate" : 796191818.813429,
+    "_locale" : "en_US",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "USA",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
