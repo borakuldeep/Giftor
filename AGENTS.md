@@ -77,6 +77,7 @@ If SwiftData is configured to use CloudKit:
 - Add code comments and documentation comments as needed.
 - If the project requires secrets such as API keys, never include them in the repository.
 - If the project uses Localizable.xcstrings, prefer to add user-facing strings using symbol keys (e.g. helloWorld) in the string catalog with `extractionState` set to "manual", accessing them via generated symbols such as  `Text(.helloWorld)`. Offer to translate new keys into all languages supported by the project.
+- After changes are finished, compile the code for errors and fix them. Repeat this step till all errors are fixed.
 
 
 ## PR instructions
