@@ -171,14 +171,12 @@ struct HomeView: View {
         VStack(spacing: 0) {
             // Header bar
             HStack {
-                HStack {
-                    Button("+ New") {
-                        viewModel.reset()
-                    }
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundStyle(.black)
-                    .buttonStyle(.borderedProminent)
-                }
+                Button("+ New") {
+                    viewModel.reset()
+                  }
+                  .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                  .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16, style: .continuous))
+                  .foregroundStyle(.white)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
                 Image("AppIconImage")
@@ -230,22 +228,24 @@ struct HomeView: View {
 
             Spacer()
 
-            if viewModel.selectedItemType == "video" {
+if viewModel.selectedItemType == "video" {
                 DurationSelectorBar(
                     selectedDuration: viewModel.gifLength,
                     videoLength: viewModel.videoLength,
-                   clipStartTime: $viewModel.gifStartTime
-                ) {
-                    Task {
-                        viewModel.isProcessing = true
-                        try? await viewModel.generateGif(
-                            asset: viewModel.asset!
-                        )
-                        viewModel.isProcessing = false
+                    clipStartTime: $viewModel.gifStartTime,
+                    onGifAction: { seconds in
+                        Task {
+                            viewModel.isProcessing = true
+                            viewModel.gifLength = seconds
+                            try? await viewModel.generateGif(
+                                asset: viewModel.asset!
+                            )
+                            viewModel.isProcessing = false
+                        }
                     }
-                }
-                .padding(.bottom)
-            }
+                   )
+                   .padding(.bottom)
+             }
 
             BottomActions(
                 previewURL: url,
