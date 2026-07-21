@@ -220,10 +220,6 @@ struct HomeView: View {
                     }
                 }
                 .frame(height: geo.size.height)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 16)
-                        .stroke(Color.white, lineWidth: 8)
-                )
             }
 
             Spacer()
