@@ -46,9 +46,8 @@ struct TextSheetView: View {
            (_ draft1: TextOverlayDraft, _ draft2: TextOverlayDraft?) -> Void
 
     private var isPaid: Bool {
-        iapManager.userPaidStatus == "free"
-               || iapManager.userPaidStatus == "pro"
-       }
+        iapManager.userPaidStatus == "pro"
+    }
 
        // Active draft binding switches between draft and draft2 based on tab
     private var activeDraftBinding: Binding<TextOverlayDraft> {

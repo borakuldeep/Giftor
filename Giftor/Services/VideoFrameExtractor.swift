@@ -61,7 +61,7 @@ enum VideoFrameExtractor {
                 preferredTimescale: durationLoaded.timescale
             )
 
-            let cgImage = try await generateImage(from: generator, at: time)
+            let (cgImage, _) = try await generator.image(at: time)
 
             if !isColor {
                 let ciImage = CIImage(cgImage: cgImage)
@@ -121,35 +121,6 @@ enum VideoFrameExtractor {
             frames: frames,
             duration: targetDuration
         )
-    }
-
-    static func generateImage(
-        from generator: AVAssetImageGenerator,
-        at time: CMTime
-    ) async throws -> CGImage {
-
-        try await withCheckedThrowingContinuation { continuation in
-
-            generator.generateCGImageAsynchronously(for: time) {
-                cgImage,
-                actualTime,
-                error in
-
-                if let error = error {
-                    continuation.resume(throwing: error)
-                    return
-                }
-
-                guard let cgImage = cgImage else {
-                    continuation.resume(
-                        throwing: NSError(domain: "ThumbnailError", code: -1)
-                    )
-                    return
-                }
-
-                continuation.resume(returning: cgImage)
-            }
-        }
     }
 
 }

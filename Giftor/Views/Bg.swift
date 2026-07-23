@@ -64,32 +64,9 @@ extension View {
 
 let defaultColor = "#6C5CE7"
 func getAppColor() -> String {
-    var color: String = defaultColor //default"
-    if let currColor = UserDefaults.standard.string(forKey: "appColor") {
-        color = currColor
-     }
-    else {
-        UserDefaults.standard.set(color, forKey: "appColor")
-     }
-    return color
-}
-
-func setAppColor() -> String {
-    let colors = ["#E84393", "#67B26F", "#FCA311", "#0984E3", "#FD79A8"]
-    var newColor = colors[0]
-    let currentColor = getAppColor()
-    if currentColor == defaultColor {
-        UserDefaults.standard.set(newColor, forKey: "appColor")
-     }
-    else {
-        let index = colors.firstIndex(of: currentColor)
-        if index == 4 {
-            newColor = defaultColor
-         }
-        else {
-            newColor = colors[index! + 1]
-         }
-        UserDefaults.standard.set(newColor, forKey: "appColor")
-     }
-    return newColor
+    if let color = UserDefaults.standard.string(forKey: "appColor") {
+        return color
+    }
+    UserDefaults.standard.set(defaultColor, forKey: "appColor")
+    return defaultColor
 }

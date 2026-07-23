@@ -9,25 +9,19 @@ import Combine
 
 enum UserTier: Int, Comparable {
     case free = 0
-    case plus = 1
-    case pro = 2
+    case pro = 1
 
     static func < (lhs: UserTier, rhs: UserTier) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
 
     var stringValue: String {
-        switch self {
-        case .free: return "free"
-        case .plus: return "plus"
-        case .pro: return "pro"
-        }
+        self == .free ? "free" : "pro"
     }
 }
 
 let userDefaults = UserDefaults.standard
 
-let plusUserProdId = "com.xb.giftor.user.plus"
 let proUserProdId = "com.xb.giftor.user.pro"
 let coffeeProdId = "com.xb.giftor.coffee"
 let userTypeKey = "premiumUserType"
@@ -66,16 +60,7 @@ extension IAPManager {
                 let transaction = try self.verifyPurchase(verification)
                 await transaction.finish()
                 
-                // Determine tier
-                let newTier: UserTier
-                switch product.id {
-                case proUserProdId:
-                    newTier = .pro
-                case plusUserProdId:
-                    newTier = .plus
-                default:
-                    newTier = .free
-                }
+                let newTier: UserTier = product.id == proUserProdId ? .pro : .free
                 
                 // Only upgrade if new tier is higher than current
                 let currentTierRaw = userDefaults.integer(forKey: userTypeKey)
@@ -117,16 +102,9 @@ extension IAPManager {
 
         for await result in Transaction.currentEntitlements {
             guard case .verified(let transaction) = result else { continue }
-
-            switch transaction.productID {
-            case proUserProdId:
-                highestTier = max(highestTier, .pro)
+            if transaction.productID == proUserProdId {
+                highestTier = .pro
                 didRestoreWork = true
-            case plusUserProdId:
-                highestTier = max(highestTier, .plus)
-                didRestoreWork = true
-            default:
-                continue
             }
         }
 

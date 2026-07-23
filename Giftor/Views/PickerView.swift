@@ -91,32 +91,5 @@ struct PhotoPickerView: View {
     }
 }
 
-struct FilesVideoPickerView: View {
 
-    var onPick: (URL) -> Void
-    @State private var showPicker = false
-
-    var body: some View {
-        Button(action: {
-            showPicker = true
-        }){
-            Image(systemName: "photo.on.rectangle")
-                .font(.headline)
-                .frame(maxWidth: .infinity)
-                .padding()
-        }
-        .buttonStyle(.borderedProminent)
-        .padding(.horizontal)
-        .fileImporter(
-            isPresented: $showPicker,
-            allowedContentTypes: [.movie],
-            allowsMultipleSelection: false
-        ) { result in
-            if case let .success(urls) = result,
-               let url = urls.first {
-                onPick(url)
-            }
-        }
-    }
-}
 

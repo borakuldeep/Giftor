@@ -351,7 +351,7 @@ final class VideoToGIFViewModel {
         }
     }
 
-    func export(_ type: ExportType) async {
+    func export() async {
         isProcessing = true
         errorMessage = nil
 

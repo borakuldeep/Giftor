@@ -245,7 +245,7 @@ if viewModel.selectedItemType == "video" {
                 previewURL: url,
                 showTextSheet: $showTextSheet,
                 showSettingSheet: $showSettingSheet
-             ) { Task { await viewModel.export(.gif) } }
+             ) { Task { await viewModel.export() } }
         }
     }
 }

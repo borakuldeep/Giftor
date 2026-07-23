@@ -153,7 +153,7 @@ struct SettingsSheetView: View {
                       }
 
                     Section(header: Text("Change water mark")) {
-                        if ["free", "plus"].contains(iapManager.userPaidStatus)
+                        if iapManager.userPaidStatus != "pro"
                           {
                             Text("Available for Pro users only.")
                           } else {

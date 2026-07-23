@@ -1,21 +1,5 @@
 import StoreKit
-//
-//  BuyProductView.swift
-//  Giftor
-//
-//  Created by Kuldeep Bora on 21.02.26.
-//
 import SwiftUI
-
-struct ProductTYpe {
-    let productID: String
-    let title: String
-    let subtitle: String
-    let price: String
-    let amount: NSDecimalNumber  // for Apple Pay
-    let priceColor: Color
-    let icon: String
-}
 
 struct BuyProductView: View {
     @Environment(\.dismiss) var dismiss
@@ -118,7 +102,7 @@ struct BuyProductView: View {
                         .padding(.horizontal, 32)
                     }
 
-                    if ["free", "plus"].contains(iapManager.userPaidStatus) {
+                    if iapManager.userPaidStatus != "pro" {
                         // PRO
                         VStack(spacing: 8) {
                             Button(action: {
@@ -266,7 +250,8 @@ struct BuyProductView: View {
                     .transition(.move(edge: .bottom).combined(with: .opacity))
                     .padding(.bottom, 20)
                     .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        Task {
+                            try? await Task.sleep(for: .seconds(2))
                             withAnimation {
                                 showThanksToast = false
                             }
