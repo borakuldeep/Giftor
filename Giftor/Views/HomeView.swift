@@ -18,9 +18,7 @@ struct HomeView: View {
     var body: some View {
         VStack {
             if viewModel.isProcessing, viewModel.previewURL == nil {
-                VStack {
-                    ProgressView("Processing…")
-                }
+                ProcessingLogoView()
             } else if let error = viewModel.errorMessage {
                 errorView(error: error)
             } else if let url = viewModel.previewURL {
@@ -248,11 +246,35 @@ if viewModel.selectedItemType == "video" {
                 showTextSheet: $showTextSheet,
                 showSettingSheet: $showSettingSheet
              ) { Task { await viewModel.export(.gif) } }
-          }
-      }
+        }
     }
+}
 
-    #Preview {
-        HomeView()
-            .environmentObject(IAPManager(preview: true))
+#Preview {
+    HomeView()
+        .environmentObject(IAPManager(preview: true))
+}
+
+struct ProcessingLogoView: View {
+    @State private var rotationAngle: Double = 0
+
+    var body: some View {
+        VStack(spacing: 20) {
+            Image("AppIconImage")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+                .clipShape(.rect(cornerRadius: 22))
+                .rotationEffect(.degrees(rotationAngle))
+                .onAppear {
+                    withAnimation(.linear(duration: 2).repeatForever(autoreverses: false)) {
+                        rotationAngle = 360
+                    }
+                }
+
+            Text("Processing…")
+                .font(.headline)
+                .foregroundStyle(.secondary)
+        }
     }
+}
