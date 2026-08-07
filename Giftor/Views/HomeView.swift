@@ -103,7 +103,6 @@ struct HomeView: View {
                         textTiming: viewModel.text2Placement
                     )
                 ) { draft1, draft2 in
-                    showTextSheet = false
                     Task {
                         try? viewModel.updateTextOverlay(
                             settings1: draft1,
