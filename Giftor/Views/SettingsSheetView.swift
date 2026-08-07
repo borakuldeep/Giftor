@@ -178,7 +178,7 @@ struct SettingsSheetView: View {
             .overlay(alignment: .bottom) {
                  if showAutoSaveToast {
                      Text(
-                          "Updated!"
+                          "Applied!"
                       )
                       .font(.system(size: 14, weight: .semibold))
                       .foregroundStyle(.primary)

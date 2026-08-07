@@ -31,19 +31,48 @@ struct TextSheetView: View {
 
        // Incoming initial drafts
        @State var draft: TextOverlayDraft
-      @State private var originalSnapshot: TextOverlayDraft? = nil
 
       // New: allow caller to provide initial draft2
     var draft2Initial: TextOverlayDraft?
       @State private var draft2: TextOverlayDraft?
-      @State private var initialDraft2Snapshot: TextOverlayDraft? = nil
 
        // Only used when Plus/Pro to switch tabs
        @State private var selectedTabIndex: Int = 0
 
-       // Updated to return both drafts
+       // Auto-save handled by .onChange below, no Save button needed
     let onSave:
            (_ draft1: TextOverlayDraft, _ draft2: TextOverlayDraft?) -> Void
+
+       @State private var showAutoSaveToast = false
+       @State private var debounceTask: Task<Void, Never>?
+
+       private var computedDraft2: TextOverlayDraft? {
+           if isPaid {
+               if let existing = draft2 {
+                   return existing
+               } else if let provided = draft2Initial {
+                   return provided
+               } else {
+                   var copy = draft
+                   copy.textPosition = .bottom     // default for text2
+                   return copy
+               }
+           }
+           return nil
+       }
+
+       private func autoSave() {
+           debounceTask?.cancel()
+           withAnimation(.spring(response: 0.7, dampingFraction: 0.6)) {
+               showAutoSaveToast = true
+           }
+           debounceTask = Task {
+               try? await Task.sleep(for: .seconds(1.0))
+               guard !Task.isCancelled else { return }
+               showAutoSaveToast = false
+               onSave(draft, computedDraft2)
+           }
+       }
 
     private var isPaid: Bool {
         iapManager.userPaidStatus == "pro"
@@ -161,43 +190,26 @@ struct TextSheetView: View {
                         dismiss()
                        }
                    }
-                ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
-                           // For paid users, pass both drafts; for free, pass only draft1
-                        let d1 = draft
-                        let d2: TextOverlayDraft? = {
-                            guard isPaid else { return nil }
-                            if let existing = draft2 {
-                                return existing
-                               } else if let provided = draft2Initial {
-                                return provided
-                               } else {
-                                var copy = draft
-                                copy.textPosition = .bottom     // default for text2
-                                return copy
-                               }
-                           }()
-                        onSave(d1, d2)
-                       }
-                       .foregroundStyle(.black)
-                       .buttonStyle(.borderedProminent)
-                       .padding(.horizontal)
-                        // Only enable when at least one draft differs from its initial state
-                       .disabled(
-                            isPaid 
-                                ? (draft == originalSnapshot && draft2 == initialDraft2Snapshot)
-                                : (draft == originalSnapshot)
-                        )
-                   }
                }
                .appBackground()
+
+               .overlay(alignment: .bottom) {
+                    if showAutoSaveToast {
+                        Text("Applied!")
+                            .font(.system(size: 14, weight: .semibold))
+                            .foregroundStyle(.primary)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 12)
+                            .background(Color.green.opacity(0.85), in: RoundedRectangle(cornerRadius: 16))
+                            .shadow(color: .black.opacity(0.12), radius: 8, x: 0, y: 4)
+                    }
+                }
+                .animation(.easeInOut, value: showAutoSaveToast)
+
+                .onChange(of: draft) { _, _ in autoSave() }
+                .onChange(of: draft2) { _, _ in autoSave() }
            }
            .onAppear {
-              // Initialize snapshot for dirty-checking on sheet presentation
-            if originalSnapshot == nil {
-               originalSnapshot = draft
-              }
-            
                // Initialize second draft lazily for paid users
             if isPaid && draft2 == nil {
                 if let provided = draft2Initial {
@@ -208,11 +220,6 @@ struct TextSheetView: View {
                     draft2 = copy
                    }
                }
-              
-               // Capture initial state for Text 2 whenever it exists and hasn't been captured yet
-            if draft2 != nil && initialDraft2Snapshot == nil {
-                initialDraft2Snapshot = draft2
-            }
           }
       }
 }

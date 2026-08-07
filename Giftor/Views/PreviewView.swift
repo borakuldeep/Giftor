@@ -25,7 +25,7 @@ struct PreviewView: View {
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
-                                lineWidth: 2
+                                lineWidth: 6
                             )
                     )
             )
