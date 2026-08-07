@@ -49,10 +49,15 @@ struct Bg: ViewModifier {
      
     func body(content: Content) -> some View {
         ZStack {
-            Color(hex: colorScheme == .dark ? bg.color : "#fff5f5")
-                 .ignoresSafeArea()
+            if colorScheme == .dark {
+                LinearGradient(colors: [.black, .gray], startPoint: .top, endPoint: .bottom)
+                    .ignoresSafeArea()
+            } else {
+                Color(hex: "#fff5f5")
+                    .ignoresSafeArea()
+            }
             content
-         }
+        }
       }
 }
 
