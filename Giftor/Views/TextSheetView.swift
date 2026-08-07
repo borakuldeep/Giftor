@@ -207,7 +207,10 @@ struct TextSheetView: View {
                 .animation(.easeInOut, value: showAutoSaveToast)
 
                 .onChange(of: draft) { _, _ in autoSave() }
-                .onChange(of: draft2) { _, _ in autoSave() }
+                .onChange(of: draft2) { oldValue, _ in
+                    guard oldValue != nil else { return }   // skip initial nil → value setup
+                    autoSave()
+                }
            }
            .onAppear {
                // Initialize second draft lazily for paid users
