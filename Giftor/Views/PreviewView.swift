@@ -25,9 +25,10 @@ struct PreviewView: View {
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 ),
-                                lineWidth: 6
+                                lineWidth: 2
                             )
                     )
+                    //.shadow(color: .white.opacity(0.5), radius: 20)
             )
     }
 }

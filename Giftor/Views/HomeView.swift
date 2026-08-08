@@ -23,6 +23,7 @@ struct HomeView: View {
                 errorView(error: error)
             } else if let url = viewModel.previewURL {
                 previewContentView(url: url)
+                    .padding(10)
             } else {
                 EmptyStateView(viewModel: viewModel)
             }
