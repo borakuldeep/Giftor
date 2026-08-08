@@ -356,8 +356,13 @@ final class VideoToGIFViewModel {
         errorMessage = nil
 
         do {
-            guard extractedVideo != nil else { return }
-            try await AnimatedEncoder.saveGIFToPhotos(previewURL!)
+            if selectedItemType == "photo", photoGifEffect == .none,
+               let frame = extractedVideo?.frames.first {
+                try await AnimatedEncoder.savePhotoToPhotos(frame)
+            } else {
+                guard extractedVideo != nil else { return }
+                try await AnimatedEncoder.saveGIFToPhotos(previewURL!)
+            }
             showSavedToast = true
         } catch {
             errorMessage = error.localizedDescription

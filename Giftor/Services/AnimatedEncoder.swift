@@ -67,4 +67,31 @@ enum AnimatedEncoder {
                 .addResource(with: .photo, fileURL: url, options: nil)
         }
     }
+
+    static func savePhotoToPhotos(_ image: CGImage) async throws {
+        let url = FileManager.default.temporaryDirectory
+            .appendingPathComponent(UUID().uuidString)
+            .appendingPathExtension("jpg")
+
+        guard let dest = CGImageDestinationCreateWithURL(
+            url as CFURL,
+            UTType.jpeg.identifier as CFString,
+            1,
+            nil
+        ) else {
+            throw EncodeError.creationFailed
+        }
+
+        CGImageDestinationAddImage(dest, image, nil)
+
+        guard CGImageDestinationFinalize(dest) else {
+            throw EncodeError.finalizeFailed
+        }
+
+        try await PHPhotoLibrary.shared().performChanges {
+            PHAssetCreationRequest
+                .forAsset()
+                .addResource(with: .photo, fileURL: url, options: nil)
+        }
+    }
 }
