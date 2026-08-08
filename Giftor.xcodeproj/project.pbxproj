@@ -10,9 +10,20 @@
 		8A4B22F72F4A20EC00A0458B /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A4B22F62F4A20EC00A0458B /* StoreKit.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		8A0A00012F50000100000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8AA4A0FF2F277704000F5721 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8AA4A1062F277704000F5721;
+			remoteInfo = Giftor;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		8A4B22F62F4A20EC00A0458B /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		8AA4A1072F277704000F5721 /* Giftor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Giftor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0A00022F50000100000001 /* GiftorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GiftorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -35,6 +46,13 @@
 			path = Giftor;
 			sourceTree = "<group>";
 		};
+		8A0A00032F50000100000001 /* GiftorTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+			);
+			path = GiftorTests;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +61,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A4B22F72F4A20EC00A0458B /* StoreKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A0A00082F50000100000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,6 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA4A1092F277704000F5721 /* Giftor */,
+				8A0A00032F50000100000001 /* GiftorTests */,
 				8A4B22F52F4A20EC00A0458B /* Frameworks */,
 				8AA4A1082F277704000F5721 /* Products */,
 			);
@@ -70,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				8AA4A1072F277704000F5721 /* Giftor.app */,
+				8A0A00022F50000100000001 /* GiftorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +126,29 @@
 			productReference = 8AA4A1072F277704000F5721 /* Giftor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		8A0A00042F50000100000001 /* GiftorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8A0A000A2F50000100000001 /* Build configuration list for PBXNativeTarget "GiftorTests" */;
+			buildPhases = (
+				8A0A00072F50000100000001 /* Sources */,
+				8A0A00082F50000100000001 /* Frameworks */,
+				8A0A00092F50000100000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8A0A000C2F50000100000001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8A0A00032F50000100000001 /* GiftorTests */,
+			);
+			name = GiftorTests;
+			packageProductDependencies = (
+			);
+			productName = GiftorTests;
+			productReference = 8A0A00022F50000100000001 /* GiftorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -111,6 +161,10 @@
 				TargetAttributes = {
 					8AA4A1062F277704000F5721 = {
 						CreatedOnToolsVersion = 26.0.1;
+					};
+					8A0A00042F50000100000001 = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 8AA4A1062F277704000F5721;
 					};
 				};
 			};
@@ -129,6 +183,7 @@
 			projectRoot = "";
 			targets = (
 				8AA4A1062F277704000F5721 /* Giftor */,
+				8A0A00042F50000100000001 /* GiftorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -141,10 +196,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8A0A00092F50000100000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8AA4A1032F277704000F5721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8A0A00072F50000100000001 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -359,6 +428,58 @@
 			};
 			name = Release;
 		};
+		8A0A000D2F50000100000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xb.giftorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giftor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Giftor";
+			};
+			name = Debug;
+		};
+		8A0A000E2F50000100000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.xb.giftorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Giftor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Giftor";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -380,7 +501,22 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		8A0A000A2F50000100000001 /* Build configuration list for PBXNativeTarget "GiftorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8A0A000D2F50000100000001 /* Debug */,
+				8A0A000E2F50000100000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+		8A0A000C2F50000100000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8AA4A1062F277704000F5721 /* Giftor */;
+			targetProxy = 8A0A00012F50000100000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 	};
 	rootObject = 8AA4A0FF2F277704000F5721 /* Project object */;
 }

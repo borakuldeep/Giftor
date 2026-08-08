@@ -351,12 +351,17 @@ final class VideoToGIFViewModel {
         }
     }
 
+    /// A photo with no effect is exported as a still photo instead of a GIF.
+    var savesPhotoAsStill: Bool {
+        selectedItemType == "photo" && photoGifEffect == .none
+    }
+
     func export() async {
         isProcessing = true
         errorMessage = nil
 
         do {
-            if selectedItemType == "photo", photoGifEffect == .none,
+            if savesPhotoAsStill,
                let frame = extractedVideo?.frames.first {
                 try await AnimatedEncoder.savePhotoToPhotos(frame)
             } else {

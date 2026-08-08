@@ -32,13 +32,13 @@ struct HomeView: View {
         .overlay(alignment: .bottom) {
             if viewModel.showSavedToast {
                 Text(
-                    viewModel.isProcessing ? "saving..." : "GIF saved to Photos"
+                    viewModel.isProcessing ? "saving..." : "Saved to Photos"
                 )
                 .font(.subheadline)
                 .foregroundStyle(.black)
                 .padding(.horizontal, 16)
                 .padding(.vertical, 10)
-                .background(.yellow)
+                .background(Color.green.opacity(0.85), in: RoundedRectangle(cornerRadius: 16))
                 .clipShape(Capsule())
                 .transition(.move(edge: .bottom).combined(with: .opacity))
                 .padding(.bottom, 20)
